@@ -65,11 +65,13 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
 
 #RUN chown -R www-data:www-data /var/www
 #RUN chmod 755 -R /var/www
+ADD * /var/www
 RUN chgrp -R www-data /var/www
 RUN find /var/www -type d -exec chmod 775 {} +
 RUN find /var/www -type f -exec chmod 664 {} +
 
-EXPOSE 80
+EXPOSE 80 443
+ 
 
 # start Apache2 on image start
 CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
