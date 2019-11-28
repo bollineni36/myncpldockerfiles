@@ -72,7 +72,7 @@ RUN find /var/www -type f -exec chmod 664 {} +
 
 EXPOSE 80 443
  
-
+WORKDIR /var/www/html/
 # start Apache2 on image start
 CMD ["/usr/sbin/apache2ctl","-DFOREGROUND"]
 
