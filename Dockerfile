@@ -65,7 +65,9 @@ RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/Allo
 
 #RUN chown -R www-data:www-data /var/www
 #RUN chmod 755 -R /var/www
-ADD * /var/www/
+RUN rm -R /var/www/html/
+RUN echo '<?php phpinfo(); ?>' > info.php
+ADD * /var/www/html/
 RUN chgrp -R www-data /var/www
 RUN find /var/www -type d -exec chmod 775 {} +
 RUN find /var/www -type f -exec chmod 664 {} +
